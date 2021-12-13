@@ -1,0 +1,470 @@
+
+body{
+  background-color: #f4f4f4;
+  color: #555;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6em;
+  margin:0;
+}
+
+body button{
+  background-color: lightblue;
+  border: 2px solid #333;
+  transition-duration: 0.6s;
+  cursor: pointer;  
+}
+
+body button:hover {
+  background-color: yellow;
+  color: black
+}
+body button:active{
+  box-shadow: none;
+}
+
+
+.container{
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+#main-header{
+  background-color: lightblue;
+  padding: 1%;
+  line-height: 5em
+}
+
+#main-header h1{
+  font-size: 5em;
+  text-align: center;
+  text-shadow: 5px 5px 10px white;
+}
+
+#navbar{
+  background-color:#333;
+  color: #fff;
+}
+#navbar ul{
+  padding: 0px;
+  list-style: none;
+}
+#navbar li{
+  display: inline;
+}
+#navbar a{
+  color:#fff;
+  font-size: 1.4em;
+  text-decoration: none;
+  padding-right: 30px;
+  text-shadow: 3px 3px 5px black;
+  transition-duration: 0.6s;
+}
+#navbar a:hover {
+  color: yellow;
+  text-shadow: 3px 3px 10px white;
+}
+#navbar a:active {
+  text-shadow: none;
+}
+
+#main-footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 200px;
+  
+  
+  }
+
+/* ----------------------------------- Main Page ------------------------------------- */
+
+.explanation h2{
+  font-size: 2em;
+  padding-top: 40px;
+  margin: 0;
+  padding-left: 0;
+  display: inline-block;
+}
+.explanation button{
+  font-size: 1.5em;
+  margin-top: 20px;
+  box-shadow: 10px 10px 10px #aaa;
+  width: 2.5em;
+  padding: 20px;
+  margin-right: 20px;
+  float: left;
+}
+.explanation button:hover {
+  background-color: yellow
+}
+.explanation button:active{
+  box-shadow: none;
+}
+
+.theory {
+  width: 90%;
+  background-color: lightblue;
+  text-align: justify;
+  margin-top: 25px;
+  margin-bottom: 50px;
+  padding: 20px 50px;
+  box-shadow: 20px 20px 30px #aaa;
+}
+
+.image {
+  padding-left: 15px; 
+  float: right;
+  width: 50%
+}
+
+.block {
+  float: left;
+  width: 25%;
+  text-align: left;
+  padding: 0 20px 30px;
+  box-sizing: border-box
+}
+.block h3{
+  padding: 0;
+  border-top: 0;
+  text-align: left
+}
+
+
+.explanation-settings li {
+  padding: 10px;
+  list-style-image: url("./img/check.png")
+}
+.explanation-settings button{
+  font-size: 1em;
+  margin-right: 20px;
+  vertical-align: center;
+  box-shadow: 5px 5px 5px #aaa;
+  display: inline-block;
+}
+.explanation-settings h3{
+  padding: 20px;
+  display: inline-block;
+  text-align: left
+}
+
+.explaining-buttons p{
+ 
+  display: inline-block;
+  text-align: left;
+  margin-left: 20px
+}
+.explaining-buttons button{
+  font-size: smaller;
+  width: auto;
+  padding: 8px;
+  background-color: blue;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 2px 5px 5px #333;
+  transition-duration: 0.6s;
+  margin-top: 0px;
+  margin-right: 10px;
+  display: inline-block;
+}
+.explaining-buttons button:hover{
+  color: black;
+}
+.explaining-buttons button:active{
+  box-shadow: none;
+}
+
+.arrows{
+  padding-left: 30px
+}
+
+/* ----------------------------------- Visualisation ------------------------------------- */
+
+.visualisation{
+  text-align: center;
+  position: relative;
+}
+
+.visualisation button {
+  font-size: 1.5em;
+  padding: 10px;
+  margin: 10px;
+  background-color: blue;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 2px 5px 5px #333;
+
+}
+
+.visualisation h1{
+  color: #333;
+  font-size: 3.5em;
+  margin-bottom:50px;
+  text-shadow: 10px 5px 20px #555
+}
+
+#settings-button {
+  background-color: #333;
+  color: white;
+  box-shadow: 10px 10px 20px #555;
+  font-size: 1.5em;
+  padding: 20px;
+  margin-top: 20px;
+  margin-left:0px;
+  border-radius: 20px;
+  position: relative;
+  left:0;
+  transition-duration: 0.6s;
+}
+
+#settings-button:hover {
+  background-color: yellow;
+  color: black
+}
+#settings-button:active{
+  box-shadow: none;
+}
+
+#nextPage {
+  background-color: gold; 
+  font-size: 70px; 
+  color: black;
+  padding: 50px
+}
+
+#step-button{
+  font-size: 2em; 
+  padding: 20px
+}
+
+#results {
+  padding: 5px;
+  font-size: 0.4em;
+  width: '80%';
+  table-layout: 'fixed' 
+}
+
+#results-input{
+  font-size: 0.5em; 
+  overflow-x: auto;
+  width: 500px
+}
+
+/* ------------------------------------- Tables ------------------------------- */
+
+table{
+  font-size: 3em;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: scroll;
+  box-shadow: 20px 20px 20px #333;
+
+}
+
+td{
+  border: 1px solid black;
+  padding: 30px;
+  transition-duration: 0.6s;
+}  
+
+.hovereffect td:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.userChoice  {
+  width: 15%; 
+  height: 15%;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+#inputbox td{
+  font-size: 0.7em
+}
+
+
+/* ------------------------------------ Media Query * ------------------------------ */
+/* --------------------------------------------------------------------------------- */
+
+@media screen and (max-width: 1400px) {
+
+  table{
+    font-size: 2em;
+  }
+
+td{
+    padding: 5px;
+}  
+
+  #nextPage {
+    background-color: gold; 
+    font-size: 3em; 
+    color: black;
+
+  }
+
+  #nextPage td{
+    padding: 30px
+  }
+
+  #inputbox td{
+    font-size: small
+  }
+
+
+}
+
+@media screen and (max-width: 1000px) {
+.getVertical {
+  display: table-row;
+}
+
+#results {
+  margin: auto
+}
+
+#results-input {
+  margin: 0;
+  padding-left: 0;
+  width: 200px
+}
+
+}
+
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  #navbar{
+    text-align: center;
+
+  }
+
+  #main-header{
+    background-color: lightblue;
+    padding: 1%;
+    line-height: 3em
+  }
+
+  #main-header h1{
+    font-size: 2.5em;
+  }
+
+.explanation h2{
+  font-size: 1.2em;
+  display: block;
+  padding-top: 20px
+}
+
+.explanation button{
+  font-size: 1em;
+}
+
+.theory {
+  width: 90%;
+  margin: 0px;
+  padding: 10px;
+}
+
+.image {
+  width: 100%;
+  margin-bottom: 20px
+}
+
+.block {
+  border: 1px solid black;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.block h3{
+  text-align: center
+}
+
+.explanation-settings li {
+  padding: 0px;
+  list-style-image: none;
+  list-style-type: none;
+}
+
+.explanation-settings ul{
+  padding-left: 0px;
+  margin: 20px;
+  margin-left: 0px;
+}
+
+.explanation-settings p{
+  padding-left: 0px;
+  margin-left: 0px;
+}
+
+.explanation-settings h3{
+  font-size: 1em;
+  padding: 20px;
+  display: block;
+  text-align: center
+}
+
+.arrows{
+  padding-left: 0px
+}
+
+.explaining-buttons p{
+
+  display: block;
+  text-align: left;
+  margin-left: 0px;
+}
+
+/* ---------- Visualisation ------------ */
+
+.visualisation button {
+  font-size: 1em;
+}
+
+.visualisation h1{
+  font-size: 2em;
+  text-shadow: 10px 5px 20px #555
+}
+
+#settings-button {  
+  font-size: 1em;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+
+
+#nextPage {
+  font-size: 2em; 
+
+}
+
+#nextPage td{
+  padding: 20px
+}
+
+#step-button{
+  font-size: 1.5em; 
+  padding: 20px
+}
+
+#cache {
+  margin: auto;
+  width: 60%;
+}
+
+
+}
+
+
+
+
+
