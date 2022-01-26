@@ -29,7 +29,6 @@ function Processing() {
 
     const linebreak = (width) =>
     {
-        console.log(window.innerWidth)
         return window.innerWidth < width? <br/> :       <> &nbsp;</>
     }
 

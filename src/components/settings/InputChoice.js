@@ -41,7 +41,7 @@ function InputChoice() {
     }
     const linebreak = (width) =>
     {
-        return window.innerWidth < width? <br/> :       <> &nbsp;</>
+        return window.innerWidth < width? <br/> :  <> &nbsp;</>
     }
 
     return (
@@ -49,7 +49,7 @@ function InputChoice() {
             <p>
                 <input type="radio" value={'random'} name="input" checked={getInput() === 'random'} /> Zufall {linebreak(800)}
                 <input type="radio" value={'distributed'} name="input" checked={getInput() === 'distributed'} /> Vergangenheitsabhängig {linebreak(1200)}
-                <input type="radio" value={'adversary'} name="input" checked={getInput() === 'adversary'} /> Gegenspieler {linebreak(800)}
+                <input type="radio" value={'adversary'} name="input" checked={getInput() === 'adversary'} /> Gegenspieler <strong style={{ color: 'red' }}>*</strong> {linebreak(800)}
                 <input type="radio" value={'user'} name="input" checked={getInput() === 'user'} /> Benutzerdefiniert &nbsp;
             </p>
         </div>

@@ -26,6 +26,7 @@ function Settings(props) {
             input_is_distributed: false,
             stepWise_mode: true,
             cacheFilled: true,
+            pageFault_cacheFilling: false,  
             allDone: false,
             showCloseButton: false
         })
@@ -120,16 +121,17 @@ function Settings(props) {
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td><label className='settings-item'> Cachegrösse: </label> </td> <td><CacheSize /></td>
+                        <td><label className='settings-item'> Cachegrösse <strong style={{ color: 'red' }}>**</strong>: </label> </td> <td><CacheSize /></td>
                     </tr>
                     <tr>
                         <td><label className='settings-item'> Zahlenbereich: </label> </td><td><br/> <Range /></td>
                     </tr>
+
                     <tr>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style={{ padding: 20 }} colspan="2">Beachte, dass die Cachegrösse kleiner als der Zahlenbereich sein muss!</td>
+                        <td style={{ padding: 20 }} colspan="2"><strong style={{ color: 'red' }}>*</strong> Der Gegenspieler wird nur auf den ersten Algorithmus angewendet. Danach bleibt der Input unverändert.<br></br>
+                        <strong style={{ color: 'red' }}>**</strong> Beachte, dass die Cachegrösse kleiner als der Zahlenbereich sein muss!</td>
+                    
+                        <td style={{ padding: 20 }} colspan="2"></td>
                     </tr>
                 </table>
 

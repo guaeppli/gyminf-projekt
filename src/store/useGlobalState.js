@@ -4,38 +4,48 @@ const useGlobalState = () => {
 
 
     const [state, setState] = useState({
+        // algorithm variables
         selectedAlgorithm: 'fifo',               // fifo, lifo, lru, random, hand, lfd
-        currentRange: 10,
-        cache: Array.from({ length: 5 }, () => ['', '', '', 0, '']),      // [value, bgColor, FIFO-index, LRU-index, LFD-index]
+        algorithms: ['fifo', 'lifo', 'lru', 'random', 'hand', 'lfd'],
+        selected_algorithms: [true, true, true, false, false, true],     //  fifo, lifo, lru, random, hand, lfd
+        // cache
+        cache: Array.from({ length: 5 }, () => ['', '', '', 0, '']),      // [value, bgColor, FIFO-index, LRU-index, LFD-index]      
+        // input variables
         input: [],
         input_save: [],
         inputObject: [null, ''],    // [inputValue, bgColor]
-        output: [],
-        algorithms: ['fifo', 'lifo', 'lru', 'random', 'hand', 'lfd'],
-        selected_algorithms: [true, true, true, false, false, true],     //  fifo, lifo, lru, random, hand, lfd
-        store_statistics: [],     // algorithm, input, pagefaults
         input_is_random: [true,true],   // second value is for backup
         input_is_adversary: false,
         input_is_distributed: false,
-        stepWise_mode: true,   
-        visualisation_run: true,
+        hand_index: null,
+        // output and results
+        output: [],     
+        store_statistics: [],     // algorithm, input, pagefaults
+        // settings variables
+        currentRange: 10,
+        pageFaults: 0,
+        timeInterval: 1000,
+        // initial loops
         fillCache_Loop: null,
         nextInput_Loop: null,
         step_Loop: null,
+        // boolean flags
         cacheClicked: true,
         fillingCache: true,
         cacheFilled: true,
-        hand_index: null,
-        pageFaults: 0,
-        timeInterval: 1000,
+        stepWise_mode: true, 
+        visualisation_run: true,
+        pageFault_cacheFilling: false,  
+        allDone: false,
+        showCloseButton: true,
+        start: true,
+        // dummy variables
         dummyFill: 0,
         dummyReset: 0,
         dummyClicked: 0,
         dummyHardReset: 0,
         dummyCloseWindow: 0,
-        allDone: false,
-        showCloseButton: true,
-        start: true
+
     })
 
     const set = (payload) => {

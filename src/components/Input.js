@@ -14,10 +14,10 @@ function Input() {
     randomNr: "",
     inputNr: "",
     index: "",
-    indexLRU: "",
-    fifoCacheIndex: 0,
-    lifoCacheIndex: state.cache.length - 1,
     randCacheIndex: Math.floor(Math.random() * state.cache.length),
+    lifoCacheIndex: state.cache.length - 1,
+    fifoCacheIndex: 0,
+    indexLRU: "",
     lfdCacheIndex: "",
     cacheBGColor: "",
   });
@@ -57,7 +57,6 @@ function Input() {
   const nextInput_FIFO = () => {
     state.cacheClicked = true;
     let fifoCacheIndex = extract(state.cache, 0).indexOf("");
-    state.cache[fifoCacheIndex][2] = "X";
     const time = state.cacheFilled ? 1 : state.timeInterval;
     state.nextInput_Loop = setInterval(tick, time);
 
@@ -71,16 +70,20 @@ function Input() {
         const index = cacheNumbers.indexOf(randomNr);
 
         let inputBGColor = null;
-        if (index == -1) {
+        if (index === -1) {
           // randomNr not in cache
           inputBGColor = "salmon";
           const cacheBGColor = "salmon";
-          if (state.input.length > 0 && state.input[0][1] === "red")
+          if (state.input.length === 0 && state.pageFault_cacheFilling)
+            state.pageFaults = 1;
+          if (state.input.length > 0 && (state.input[0][1] === "red" || (state.input[0][1] === "salmon" && state.pageFault_cacheFilling)))
             state.pageFaults = state.pageFaults + 1;
           state.output[0] = state.cache[fifoCacheIndex][0];
           state.cache[fifoCacheIndex] = [randomNr, cacheBGColor];
+          console.log(state.cache)
           fifoCacheIndex = (fifoCacheIndex + 1) % state.cache.length;
-          state.cache[fifoCacheIndex][2] = "X";
+          state.cache[fifoCacheIndex][2]= "X"
+
         } else {
           // randomNr already in cache
           const cacheBGColor = "palegreen";
@@ -115,8 +118,12 @@ function Input() {
         if (index == -1) {          // randomNr not in cache
           inputBGColor = "salmon";
           const cacheBGColor = "salmon";
-          if (state.input.length > 0 && state.input[0][1] === "red")            // necessary for very first input after cachefilling
-            state.pageFaults = state.pageFaults + 1;
+
+        if (state.input.length === 0 && state.pageFault_cacheFilling)
+          state.pageFaults = 1;
+        if (state.input.length > 0 && (state.input[0][1] === "red" || (state.input[0][1] === "salmon" && state.pageFault_cacheFilling)))
+          state.pageFaults = state.pageFaults + 1;
+        
           state.output[0] = state.cache[indexLRU][0];
           state.cache[indexLRU] = [randomNr, cacheBGColor, "", 0, ""];
         } else {          // randomNr already in cache
@@ -152,7 +159,7 @@ function Input() {
       index: index,
     });
     let inputBGColor;
-    if (index == -1) {
+    if (index === -1) {
       inputBGColor = "red";
       if (state.input.length >= state.cache.length)
         state.pageFaults = state.pageFaults + 1;
@@ -266,14 +273,15 @@ function Input() {
       if (!(state.selectedAlgorithm === "hand" && !state.stepWise_mode)) {
         state.output[0] = state.cache[index][0];
       }
-      state.cache[index][0] = state.input_is_random[0]
-        ? sw_variables.randomNr
-        : sw_variables.inputNr;
+      state.cache[index][0] = 
+       state.input_is_random[0]  ? sw_variables.randomNr : sw_variables.inputNr;
+
       state.cache[index][1] = "red";
-      state.cache[index][3] = 0;
+  //    state.cache[index][3] = 0;
     } else {      // randomNr already in cache
-      state.cache[sw_variables.index][3] = 0;
       state.cache[sw_variables.index][1] = "green";
+   //   state.cache[sw_variables.index][3] = 0;
+
     }
   };
 
@@ -317,8 +325,8 @@ function Input() {
         replacePage
           ? setStepText("Die Seite wurde ersetzt.")
           : setStepText("Die Seite musste nicht ersetzt werden.");
-        setStep("step1");
         setStepButtonText("Seite anfragen");
+        setStep("step1");
         break;
 
       default:
@@ -347,6 +355,8 @@ function Input() {
           if (!cacheNumbers.includes(state.inputObject[0])) {
             state.cache[emptyCacheFieldIndex][0] = randomNr;
             state.cache[emptyCacheFieldIndex][1] = "salmon";
+            if (state.pageFault_cacheFilling)
+              state.pageFaults = state.pageFaults + 1
           } else {
             state.inputObject[1] = "palegreen";
             state.cache[cacheNumbers.indexOf(randomNr)][1] = "palegreen";
@@ -379,6 +389,8 @@ function Input() {
           clear(state.cache, 2);
           setFifoCacheIndex((fifoCacheIndex + 1) % state.cache.length);
           state.cache[(fifoCacheIndex + 1) % state.cache.length][2] = "X";
+          if (state.pageFault_cacheFilling)
+          state.pageFaults = state.pageFaults + 1
         } else {
           state.inputObject[1] = "palegreen";
           state.cache[cacheNumbers.indexOf(newInputNr)][1] = "palegreen";
@@ -394,7 +406,7 @@ function Input() {
 
   const findLRU = () => {
     var lruFrequencies = extract(state.cache, 3);
-    if (lruFrequencies.includes("")) return lruFrequencies.indexOf("");
+    //if (lruFrequencies.includes("")) return lruFrequencies.indexOf("");
     return lruFrequencies.indexOf(Math.max(...lruFrequencies));
   };
 
@@ -402,8 +414,7 @@ function Input() {
     const inputNumbers = extract(state.input_save, 0);
     for (let i = 0; i < state.cache.length; i++) {
       state.cache[i][4] =
-        inputNumbers.indexOf(state.cache[i][0], state.input.length) -
-        state.input.length;
+        inputNumbers.indexOf(state.cache[i][0], state.input.length) - state.input.length;
     }
   };
 
@@ -425,6 +436,7 @@ function Input() {
   };
 
   const checkFillingCache = (newInputNr) => {
+    console.log({state})
     const cacheNumbers = extract(state.cache, 0);
     const nextNumber =
       state.input_save.length > 0
@@ -560,6 +572,7 @@ function Input() {
     sw_variables.randomNr = getRandomNr();
     sw_variables.fifoCacheIndex = 0;
     sw_variables.lifoCacheIndex = state.cache.length - 1;
+    state.cache[sw_variables.fifoCacheIndex][2] = "X";
     if (!state.fillingCache && !state.stepWise_mode)
       state.step_Loop = setTimeout(
         () => nextStep(sw_variables.inputNr),
@@ -616,6 +629,7 @@ function Input() {
   }, [state.showCloseButton, state.dummyHardReset]);
 
   const toggleRun = () => {
+
     clearInterval(state.fillCache_Loop);
     clearInterval(state.nextInput_Loop);
     clearTimeout(state.step_Loop);

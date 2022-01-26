@@ -30,7 +30,7 @@ function AlgoChoice() {
                 return 'Optimal (LFD)'
             default:
                 console.log('Das sollte nicht passieren...', { state })
-                return 'Das sollte nicht passieren...'
+                return 'Fehler aufgetreten'
         }
     }
 
@@ -43,8 +43,6 @@ function AlgoChoice() {
         state.selected_algorithms[i] = state.selected_algorithms[i - 1]
         state.selected_algorithms[i - 1] = tempBool
         set({ ...state, showCloseButton: false })
-        // dummyReset nötig?
-
     }
 
     const linebreak = (width) => {
@@ -65,7 +63,6 @@ function AlgoChoice() {
                 else
                     return <br />
             }
-
         }
     }
 
